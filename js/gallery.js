@@ -141,8 +141,8 @@ $( function() {
     this.start = function () {
         if (musicOk && minTimeOk) {
             $('#loading').fadeOut(500, function () {
-                $('#slide-container').vegas('play');
                 music.loop().play().fadeIn(5000);
+                $('#slide-container').vegas('play');
                 $('#r2').fadeIn();
             });
         } else {
