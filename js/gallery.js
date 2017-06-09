@@ -48,12 +48,12 @@ $( function() {
             title: $( this ).find( 'img' ).attr( 'title' ),
             valign: $( this ).find( 'img' ).data( 'valign' )
         });
+        pictures[0].delay = 8000;
     });
 
     $thumbnails.find( 'a' ).click( function() {
         var idx = $( this ).parent( 'li' ).index();
         $('#slide-container').vegas( 'jump', idx );
-        //$('.jspPane').animate({top:'0px'});
         return false;
     });
 
@@ -78,9 +78,8 @@ $( function() {
 
     $('#slide-container').vegas({
         slides: pictures,
-        delay: 4000,
+        delay: 5000,
         animation: 'random',
-        autoplay: false,
         loop: true,
         cover: false,
         color: '#000',
@@ -102,7 +101,7 @@ $( function() {
 
     // Photograph
     $('#slide-container').click( function() {
-        $('#slide-container').vegas('pause')
+        $('#slide-container').vegas('pause');
 
         $pause.show();
         $pointer.hide();
@@ -141,8 +140,7 @@ $( function() {
     this.start = function () {
         if (musicOk && minTimeOk) {
             $('#loading').fadeOut(500, function () {
-                music.loop().play().fadeIn(5000);
-                $('#slide-container').vegas('play');
+                music.loop().play().fadeIn(2000);
                 $('#r2').fadeIn();
             });
         } else {
