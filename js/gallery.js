@@ -82,6 +82,7 @@ $( function() {
         animation: 'random',
         loop: true,
         cover: false,
+        preload: true,
         color: '#000',
         transition: 'random',
         walk: onChangeSlide
