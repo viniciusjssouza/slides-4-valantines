@@ -12,6 +12,33 @@ img {
 	border: 0;	
 }
 
+#loading {
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	position: fixed;
+	opacity: 1;
+	z-index: 9999;
+}
+
+#loading p {
+	color: #bbbbdd;
+	font: 13px Arial, Helvetica, sans-serif;
+	top: 38%;
+	left: 46%;
+	position: absolute;
+}
+
+#loading-gif {
+	margin: auto;
+	top: 42%;
+	left: 42%;
+	position: absolute;
+	height: 400px;
+	width: 400px;
+	background: url('../img/bb8.gif') no-repeat;
+}
+
 #r2 {
 	position: absolute;
 	top: 120px;

@@ -1,10 +1,15 @@
 $( function() {
+
+    this.afterLoad = function() {
+        $('#loading').fadeOut(3000);
+        this.start();
+    }
+
     var pictures = [],
         $pointer = $( '#pointer' ),
         $thumbnails = $( '#thumbnails' ),
         $title = $( '#title' ),
         $pause = $( '#pause' ),
-        $flash = $( '#flash' ),
         $volume = $( '#volume' );
 
     // Buzz audio library
@@ -14,10 +19,8 @@ $( function() {
     var music = new buzz.sound( 'sounds/music' );
 
     if ( !buzz.isSupported() ) {
-        $volume.hide();    
+        $volume.hide();
     }
-
-    music.loop().play().fadeIn( 5000 );
 
     // jScrollPane
 
@@ -41,7 +44,7 @@ $( function() {
 
     $thumbnails.find( 'a' ).each( function() {
         pictures.push({
-            src: $( this ).attr( 'href' ),    
+            src: $( this ).attr( 'href' ),
             title: $( this ).find( 'img' ).attr( 'title' ),
             valign: $( this ).find( 'img' ).data( 'valign' )
         });
@@ -57,8 +60,6 @@ $( function() {
     var onChangeSlide = function(index, img) {
         var src = $( img ).attr( 'src' ),
             idx = $( 'a[href="' + src + '"]' ).parent( 'li' ).index();
-
-        $flash.show().fadeOut( 1000 );
 
         var pointerPosition = $thumbnails.find( 'li' ).eq( idx ).position().left;
 
@@ -79,7 +80,7 @@ $( function() {
         slides: pictures,
         delay: 4000,
         animation: 'random',
-        autoplay: true,
+        autoplay: false,
         loop: true,
         cover: false,
         color: '#000',
@@ -124,5 +125,13 @@ $( function() {
         $('#slide-container').vegas('play')
 
         return false;
+    });
+
+    music.loop().play().fadeIn( 5000 );
+    music.bind("canplay", function () {
+        $('#loading').fadeOut(1000, function() {
+            $('#r2').fadeIn();
+        });
+        $('#slide-container').vegas('play');
     });
 });
