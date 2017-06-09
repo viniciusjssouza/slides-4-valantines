@@ -126,12 +126,29 @@ $( function() {
 
         return false;
     });
+    var musicOk = false;
+    var minTimeOk = false;
 
-    music.loop().play().fadeIn( 5000 );
     music.bind("canplay", function () {
-        $('#loading').fadeOut(1000, function() {
-            $('#r2').fadeIn();
-        });
-        $('#slide-container').vegas('play');
+        musicOk = true;
     });
+
+    setTimeout(function() {
+      minTimeOk = true;
+    }, 4000);
+
+    var main = this;
+    this.start = function () {
+        if (musicOk && minTimeOk) {
+            $('#loading').fadeOut(500, function () {
+                $('#slide-container').vegas('play');
+                music.loop().play().fadeIn(5000);
+                $('#r2').fadeIn();
+            });
+        } else {
+            setTimeout(main.start, 500);
+        }
+    };
+    this.start();
+
 });
